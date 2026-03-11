@@ -211,9 +211,9 @@
             <div class="form-group">
                 <label for="member">选择成员</label>
                 <select id="member">
-                    <option value="member1">成员1</option>
-                    <option value="member2">成员2</option>
-                    <option value="member3">成员3</option>
+                    <option value="member1">凡</option>
+                    <option value="member2">婉玲</option>
+                    <option value="member3">芷琪</option>
                 </select>
             </div>
             
@@ -228,13 +228,13 @@
             </div>
             
             <div class="form-group">
-                <label for="steps">步数 (自动识别)</label>
-                <input type="number" id="steps" placeholder="自动识别或手动输入">
+                <label for="steps">步数</label>
+                <input type="number" id="steps" placeholder="请输入步数">
             </div>
             
             <div class="form-group">
-                <label for="calories">消耗卡路里 (自动识别)</label>
-                <input type="number" id="calories" placeholder="自动识别或手动输入">
+                <label for="calories">消耗卡路里</label>
+                <input type="number" id="calories" placeholder="请输入卡路里">
             </div>
             
             <button id="submit-checkin">提交打卡</button>
@@ -243,7 +243,7 @@
         <!-- 目标设置 Tab -->
         <div class="tab-content" id="settings">
             <div class="member-setting">
-                <h3>成员1 目标设置</h3>
+                <h3>凡 目标设置</h3>
                 <div class="form-group">
                     <label for="member1-steps">每日步数目标</label>
                     <input type="number" id="member1-steps" placeholder="例如：4000" value="4000">
@@ -255,7 +255,7 @@
             </div>
             
             <div class="member-setting">
-                <h3>成员2 目标设置</h3>
+                <h3>婉玲 目标设置</h3>
                 <div class="form-group">
                     <label for="member2-steps">每日步数目标</label>
                     <input type="number" id="member2-steps" placeholder="例如：4000" value="4000">
@@ -267,7 +267,7 @@
             </div>
             
             <div class="member-setting">
-                <h3>成员3 目标设置</h3>
+                <h3>芷琪 目标设置</h3>
                 <div class="form-group">
                     <label for="member3-steps">每日步数目标</label>
                     <input type="number" id="member3-steps" placeholder="例如：4000" value="4000">
@@ -289,17 +289,17 @@
             </div>
             
             <div class="summary-card">
-                <h3>成员1 打卡情况</h3>
+                <h3>凡 打卡情况</h3>
                 <div class="stat-item">
-                    <span class="stat-label">已打卡天数</span>
-                    <span class="stat-value" id="member1-checkin-days">0</span>
+                    <span class="stat-label">本周已打卡</span>
+                    <span class="stat-value success" id="member1-checkin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">未打卡天数</span>
-                    <span class="stat-value fine" id="member1-uncheckin-days">0</span>
+                    <span class="stat-label">本周未打卡</span>
+                    <span class="stat-value" id="member1-uncheckin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">累计罚款</span>
+                    <span class="stat-label">本周罚款</span>
                     <span class="stat-value fine" id="member1-fine">¥0</span>
                 </div>
                 <div class="stat-item">
@@ -313,17 +313,17 @@
             </div>
             
             <div class="summary-card">
-                <h3>成员2 打卡情况</h3>
+                <h3>婉玲 打卡情况</h3>
                 <div class="stat-item">
-                    <span class="stat-label">已打卡天数</span>
-                    <span class="stat-value" id="member2-checkin-days">0</span>
+                    <span class="stat-label">本周已打卡</span>
+                    <span class="stat-value success" id="member2-checkin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">未打卡天数</span>
-                    <span class="stat-value fine" id="member2-uncheckin-days">0</span>
+                    <span class="stat-label">本周未打卡</span>
+                    <span class="stat-value" id="member2-uncheckin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">累计罚款</span>
+                    <span class="stat-label">本周罚款</span>
                     <span class="stat-value fine" id="member2-fine">¥0</span>
                 </div>
                 <div class="stat-item">
@@ -337,17 +337,17 @@
             </div>
             
             <div class="summary-card">
-                <h3>成员3 打卡情况</h3>
+                <h3>芷琪 打卡情况</h3>
                 <div class="stat-item">
-                    <span class="stat-label">已打卡天数</span>
-                    <span class="stat-value" id="member3-checkin-days">0</span>
+                    <span class="stat-label">本周已打卡</span>
+                    <span class="stat-value success" id="member3-checkin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">未打卡天数</span>
-                    <span class="stat-value fine" id="member3-uncheckin-days">0</span>
+                    <span class="stat-label">本周未打卡</span>
+                    <span class="stat-value" id="member3-uncheckin-days">0 天</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">累计罚款</span>
+                    <span class="stat-label">本周罚款</span>
                     <span class="stat-value fine" id="member3-fine">¥0</span>
                 </div>
                 <div class="stat-item">
@@ -380,7 +380,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">总未打卡次数</span>
-                    <span class="stat-value fine" id="total-uncheckin">0</span>
+                    <span class="stat-value" id="total-uncheckin">0</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">总罚款金额</span>
@@ -401,8 +401,9 @@
     </div>
 
     <script>
-        // 全局变量
         let currentWeek = 'current';
+        // 基准日期：2026年3月11日（第一周第一天）
+        const BASE_DATE = new Date('2026-03-11');
         let checkinData = JSON.parse(localStorage.getItem('familyCheckinData')) || {
             current: { member1: {}, member2: {}, member3: {} },
             last: { member1: {}, member2: {}, member3: {} }
@@ -412,145 +413,71 @@
             member2: { steps: 4000, calories: 350 },
             member3: { steps: 4000, calories: 300 }
         };
-        
-        // DOM加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化标签切换
+
+        const nameMap = {
+            member1: "凡",
+            member2: "婉玲",
+            member3: "芷琪"
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
             initTabs();
-            
-            // 初始化上传区域
             initUploadArea();
-            
-            // 绑定按钮事件
             bindEvents();
-            
-            // 初始化设置表单
             initSettingsForm();
-            
-            // 更新概览数据
             updateOverview();
-            
-            // 更新周总结
             updateWeeklySummary();
+            showWarmRemind();
         });
-        
-        // 初始化标签切换
+
         function initTabs() {
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // 移除所有active类
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function () {
                     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
-                    // 添加active类到当前标签
                     this.classList.add('active');
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
+                    document.getElementById(this.dataset.tab).classList.add('active');
                 });
             });
         }
-        
-        // 初始化上传区域
+
         function initUploadArea() {
             const uploadArea = document.getElementById('upload-area');
             const imageUpload = document.getElementById('image-upload');
             const previewImage = document.getElementById('preview-image');
-            
-            // 点击上传区域触发文件选择
-            uploadArea.addEventListener('click', () => {
-                imageUpload.click();
-            });
-            
-            // 文件选择后处理
-            imageUpload.addEventListener('change', function(e) {
+
+            uploadArea.addEventListener('click', () => imageUpload.click());
+
+            imageUpload.addEventListener('change', function (e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(event) {
-                        previewImage.src = event.target.result;
+                    reader.onload = e => {
+                        previewImage.src = e.target.result;
                         previewImage.style.display = 'block';
-                        
-                        // 模拟图片识别（实际项目中可接入OCR API）
-                        simulateImageRecognition();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            // 拖拽上传
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#3498db';
-                uploadArea.style.backgroundColor = '#f8f9fa';
-            });
-            
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.style.borderColor = '#bdc3c7';
-                uploadArea.style.backgroundColor = 'white';
-            });
-            
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#bdc3c7';
-                uploadArea.style.backgroundColor = 'white';
-                
-                const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        previewImage.src = event.target.result;
-                        previewImage.style.display = 'block';
-                        simulateImageRecognition();
+                        alert("📸 已加载截图，请手动输入步数和卡路里～");
                     };
                     reader.readAsDataURL(file);
                 }
             });
         }
-        
-        // 模拟图片识别（实际使用时可替换为真实OCR接口）
-        function simulateImageRecognition() {
-            // 随机生成合理的步数和卡路里值（模拟识别结果）
-            const randomSteps = Math.floor(Math.random() * 8000) + 2000;
-            const randomCalories = Math.floor(Math.random() * 300) + 200;
-            
-            document.getElementById('steps').value = randomSteps;
-            document.getElementById('calories').value = randomCalories;
-            
-            alert('✅ 图片识别完成，已自动填充步数和卡路里数据！');
-        }
-        
-        // 绑定按钮事件
+
         function bindEvents() {
-            // 提交打卡
             document.getElementById('submit-checkin').addEventListener('click', submitCheckin);
-            
-            // 保存设置
             document.getElementById('save-settings').addEventListener('click', saveSettings);
-            
-            // 导出总结
             document.getElementById('export-summary').addEventListener('click', exportSummary);
-            
-            // 周选择器
+
             document.querySelectorAll('.week-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const week = this.getAttribute('data-week');
-                    currentWeek = week;
-                    
-                    // 更新按钮状态
-                    this.parentElement.querySelectorAll('.week-btn').forEach(b => {
-                        b.classList.remove('active');
-                    });
+                btn.addEventListener('click', function () {
+                    currentWeek = this.dataset.week;
+                    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // 更新数据
                     updateOverview();
                     updateWeeklySummary();
                 });
             });
         }
-        
-        // 初始化设置表单
+
         function initSettingsForm() {
             document.getElementById('member1-steps').value = targetSettings.member1.steps;
             document.getElementById('member1-calories').value = targetSettings.member1.calories;
@@ -559,170 +486,183 @@
             document.getElementById('member3-steps').value = targetSettings.member3.steps;
             document.getElementById('member3-calories').value = targetSettings.member3.calories;
         }
-        
-        // 提交打卡
+
         function submitCheckin() {
             const member = document.getElementById('member').value;
             const steps = parseInt(document.getElementById('steps').value) || 0;
             const calories = parseInt(document.getElementById('calories').value) || 0;
-            
+
             if (steps <= 0 || calories <= 0) {
-                alert('请输入有效的步数和卡路里数值！');
+                alert("请输入有效的步数和卡路里！");
                 return;
             }
-            
-            // 获取当前日期
-            const today = new Date();
-            const dateKey = today.toISOString().split('T')[0]; // YYYY-MM-DD
-            
-            // 保存打卡数据
-            if (!checkinData[currentWeek][member]) {
-                checkinData[currentWeek][member] = {};
-            }
-            checkinData[currentWeek][member][dateKey] = {
-                steps: steps,
-                calories: calories,
-                timestamp: Date.now()
-            };
-            
-            // 保存到本地存储
+
+            const today = new Date().toISOString().split('T')[0];
+            if (!checkinData[currentWeek][member]) checkinData[currentWeek][member] = {};
+            checkinData[currentWeek][member][today] = { steps, calories };
             localStorage.setItem('familyCheckinData', JSON.stringify(checkinData));
-            
-            alert(`✅ ${member.replace('member', '成员')} 打卡成功！`);
-            
-            // 清空表单
+
+            alert(`✅ ${nameMap[member]} 打卡成功！`);
+
             document.getElementById('steps').value = '';
             document.getElementById('calories').value = '';
             document.getElementById('preview-image').style.display = 'none';
             document.getElementById('image-upload').value = '';
-            
-            // 更新概览
+
             updateOverview();
             updateWeeklySummary();
+            showWarmRemind();
         }
-        
-        // 保存设置
+
         function saveSettings() {
             targetSettings = {
-                member1: {
-                    steps: parseInt(document.getElementById('member1-steps').value) || 4000,
-                    calories: parseInt(document.getElementById('member1-calories').value) || 350
-                },
-                member2: {
-                    steps: parseInt(document.getElementById('member2-steps').value) || 4000,
-                    calories: parseInt(document.getElementById('member2-calories').value) || 350
-                },
-                member3: {
-                    steps: parseInt(document.getElementById('member3-steps').value) || 4000,
-                    calories: parseInt(document.getElementById('member3-calories').value) || 300
-                }
+                member1: { steps: parseInt(document.getElementById('member1-steps').value) || 4000, calories: parseInt(document.getElementById('member1-calories').value) || 350 },
+                member2: { steps: parseInt(document.getElementById('member2-steps').value) || 4000, calories: parseInt(document.getElementById('member2-calories').value) || 350 },
+                member3: { steps: parseInt(document.getElementById('member3-steps').value) || 4000, calories: parseInt(document.getElementById('member3-calories').value) || 300 }
             };
-            
-            // 保存到本地存储
             localStorage.setItem('targetSettings', JSON.stringify(targetSettings));
-            
-            alert('✅ 目标设置保存成功！');
+            alert("✅ 目标保存成功！");
         }
-        
-        // 更新概览数据
-        function updateOverview() {
-            // 获取本周日期范围
-            const weekDates = getWeekDates(currentWeek);
+
+        // 核心：从3月11日开始，每7天为一周，自动计算当前周的日期范围
+        function getWeekDates(type) {
+            const today = new Date();
+            // 计算距离3月11日的天数
+            const daysSinceBase = Math.floor((today - BASE_DATE) / (24 * 60 * 60 * 1000));
+            // 计算当前周是第几个周（从0开始）
+            const currentWeekIndex = Math.floor(daysSinceBase / 7);
+            // 目标周索引（current=当前周，last=上周）
+            const targetWeekIndex = type === 'current' ? currentWeekIndex : currentWeekIndex - 1;
+            // 计算目标周第一天（周一）的日期
+            const weekFirstDay = new Date(BASE_DATE);
+            weekFirstDay.setDate(BASE_DATE.getDate() + targetWeekIndex * 7);
             
-            // 遍历每个成员
-            ['member1', 'member2', 'member3'].forEach(member => {
-                let checkinDays = 0;
-                let totalSteps = 0;
-                let totalCalories = 0;
-                
-                // 统计打卡数据
-                const memberData = checkinData[currentWeek][member] || {};
+            const dates = [];
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(weekFirstDay);
+                d.setDate(weekFirstDay.getDate() + i);
+                dates.push(d.toISOString().split('T')[0]);
+            }
+            return dates;
+        }
+
+        // 新罚款规则：1天没打就罚50，≥3天（含）双倍
+        function calculateFine(uncheckDays) {
+            if (uncheckDays <= 0) return 0;
+            // 前2天：50/天；第3天及以后：100/天
+            if (uncheckDays <= 2) {
+                return 50 * uncheckDays;
+            } else {
+                return 50 * 2 + 100 * (uncheckDays - 2);
+            }
+        }
+
+        function updateOverview() {
+            const weekDates = getWeekDates(currentWeek);
+            ['member1', 'member2', 'member3'].forEach(m => {
+                const data = checkinData[currentWeek][m] || {};
+                let count = 0;
+                let steps = 0;
+                let cal = 0;
                 weekDates.forEach(date => {
-                    if (memberData[date]) {
-                        checkinDays++;
-                        totalSteps += memberData[date].steps;
-                        totalCalories += memberData[date].calories;
+                    if (data[date]) {
+                        count++;
+                        steps += data[date].steps;
+                        cal += data[date].calories;
                     }
                 });
-                
-                // 计算未打卡天数和罚款
-                const uncheckinDays = 7 - checkinDays;
-                const fine = uncheckinDays * 50;
-                
-                // 更新DOM
-                document.getElementById(`${member}-checkin-days`).textContent = checkinDays;
-                document.getElementById(`${member}-uncheckin-days`).textContent = uncheckinDays;
-                document.getElementById(`${member}-fine`).textContent = `¥${fine}`;
-                document.getElementById(`${member}-total-steps`).textContent = totalSteps;
-                document.getElementById(`${member}-total-calories`).textContent = totalCalories;
+                const uncheck = 7 - count;
+                const fine = calculateFine(uncheck);
+
+                document.getElementById(`${m}-checkin-days`).textContent = count + " 天";
+                document.getElementById(`${m}-uncheckin-days`).textContent = uncheck + " 天";
+                document.getElementById(`${m}-fine`).textContent = "¥" + fine;
+                document.getElementById(`${m}-total-steps`).textContent = steps;
+                document.getElementById(`${m}-total-calories`).textContent = cal;
             });
         }
-        
-        // 更新周总结
+
         function updateWeeklySummary() {
-            let totalFamilySteps = 0;
-            let totalFamilyCalories = 0;
-            let totalUncheckin = 0;
-            let memberSteps = { member1: 0, member2: 0, member3: 0 };
-            let memberCalories = { member1: 0, member2: 0, member3: 0 };
-            
-            // 统计所有成员数据
-            ['member1', 'member2', 'member3'].forEach(member => {
-                const memberData = checkinData[currentWeek][member] || {};
-                let checkinDays = 0;
-                
-                // 累加步数和卡路里
-                Object.values(memberData).forEach(dayData => {
-                    checkinDays++;
-                    memberSteps[member] += dayData.steps;
-                    memberCalories[member] += dayData.calories;
+            let totalSteps = 0, totalCal = 0, totalUncheck = 0, totalFine = 0;
+            let mSteps = { member1: 0, member2: 0, member3: 0 };
+            const weekDates = getWeekDates(currentWeek);
+
+            ['member1', 'member2', 'member3'].forEach(m => {
+                const data = checkinData[currentWeek][m] || {};
+                let cnt = 0;
+                Object.values(data).forEach(d => {
+                    cnt++;
+                    mSteps[m] += d.steps;
                 });
-                
-                // 累计未打卡次数
-                totalUncheckin += 7 - checkinDays;
-                
-                // 累加到家族总数
-                totalFamilySteps += memberSteps[member];
-                totalFamilyCalories += memberCalories[member];
+                const uncheck = 7 - cnt;
+                const fine = calculateFine(uncheck);
+
+                totalUncheck += uncheck;
+                totalFine += fine;
+                totalSteps += mSteps[m];
+                totalCal += Object.values(data).reduce((s, d) => s + d.calories, 0);
             });
-            
-            // 计算总罚款
-            const totalFine = totalUncheckin * 50;
-            
-            // 找出步数和卡路里冠军
-            const stepsChampion = Object.keys(memberSteps).reduce((a, b) => 
-                memberSteps[a] > memberSteps[b] ? a : b).replace('member', '成员');
-            const caloriesChampion = Object.keys(memberCalories).reduce((a, b) => 
-                memberCalories[a] > memberCalories[b] ? a : b).replace('member', '成员');
-            
-            // 更新DOM
-            document.getElementById('total-family-steps').textContent = totalFamilySteps;
-            document.getElementById('total-family-calories').textContent = totalFamilyCalories;
-            document.getElementById('total-uncheckin').textContent = totalUncheckin;
-            document.getElementById('total-fine').textContent = `¥${totalFine}`;
-            document.getElementById('steps-champion').textContent = stepsChampion;
-            document.getElementById('calories-champion').textContent = caloriesChampion;
+
+            const stepKing = Object.keys(mSteps).reduce((a, b) => mSteps[a] > mSteps[b] ? a : b);
+            document.getElementById('total-family-steps').textContent = totalSteps;
+            document.getElementById('total-family-calories').textContent = totalCal;
+            document.getElementById('total-uncheckin').textContent = totalUncheck;
+            document.getElementById('total-fine').textContent = "¥" + totalFine;
+            document.getElementById('steps-champion').textContent = nameMap[stepKing];
+            document.getElementById('calories-champion').textContent = nameMap[stepKing];
         }
-        
-        // 导出总结
+
+        // 幽默俏皮的温馨提醒
+        function showWarmRemind() {
+            const member = document.getElementById('member').value;
+            const weekDates = getWeekDates('current');
+            const data = checkinData.current[member] || {};
+            let count = 0;
+            weekDates.forEach(d => { if (data[d]) count++; });
+            const uncheck = 7 - count;
+
+            // 正向鼓励提醒
+            if (count > 0) {
+                const praiseTexts = [
+                    `😜 ${nameMap[member]}，本周已打卡 ${count} 次，超棒的！继续冲～`,
+                    `💪 加油鸭！本周打卡 ${count} 次，离全勤只差 ${7-count} 天啦～`,
+                    `🌟 棒棒哒！本周已打卡 ${count} 次，坚持就是胜利～`
+                ];
+                const randomPraise = praiseTexts[Math.floor(Math.random() * praiseTexts.length)];
+                alert(randomPraise);
+            }
+
+            // 未打卡提醒（幽默俏皮）
+            if (uncheck >= 1) {
+                let remindText = '';
+                if (uncheck === 1) {
+                    remindText = `😝 宝子，本周已经 1 天没打卡咯，再不运动钱包要瘦啦～`;
+                } else if (uncheck === 2) {
+                    remindText = `😯 小心！本周已经 2 天没打卡，再摆烂罚款要翻倍咯～`;
+                } else if (uncheck >= 3) {
+                    remindText = `🤭 完犊子！本周已经 ${uncheck} 天没打卡，罚款从第 3 天开始翻倍咯～`;
+                }
+                alert(remindText);
+            }
+        }
+
         function exportSummary() {
             const weekLabel = currentWeek === 'current' ? '本周' : '上周';
             const summaryDate = new Date().toLocaleDateString();
-            
-            // 构建总结文本
             let summaryText = `🏆 ${weekLabel}家族运动打卡总结 (${summaryDate})\n\n`;
             
             ['member1', 'member2', 'member3'].forEach(member => {
+                const name = nameMap[member];
                 const checkinDays = document.getElementById(`${member}-checkin-days`).textContent;
                 const uncheckinDays = document.getElementById(`${member}-uncheckin-days`).textContent;
                 const fine = document.getElementById(`${member}-fine`).textContent;
                 const totalSteps = document.getElementById(`${member}-total-steps`).textContent;
                 const totalCalories = document.getElementById(`${member}-total-calories`).textContent;
                 
-                summaryText += `${member.replace('member', '成员')}：
-- 打卡天数：${checkinDays}天
-- 未打卡天数：${uncheckinDays}天
-- 罚款金额：${fine}
+                summaryText += `${name}：
+- 打卡天数：${checkinDays}
+- 未打卡天数：${uncheckinDays}
+- 本周罚款：${fine}
 - 总步数：${totalSteps}步
 - 总卡路里：${totalCalories}千卡
 
@@ -738,43 +678,14 @@
 - 卡路里冠军：${document.getElementById('calories-champion').textContent}
 `;
             
-            // 创建下载链接
             const blob = new Blob([summaryText], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = `${weekLabel}家族运动打卡总结.txt`;
             a.click();
-            
-            // 释放URL对象
             URL.revokeObjectURL(url);
-            
             alert('📤 周总结已成功导出！');
-        }
-        
-        // 获取本周/上周的日期数组 (YYYY-MM-DD格式)
-        function getWeekDates(type) {
-            const dates = [];
-            const today = new Date();
-            const day = today.getDay() || 7; // 转换为周日=7
-            
-            // 计算本周一的日期
-            let monday = new Date(today);
-            monday.setDate(today.getDate() - day + 1);
-            
-            // 如果是上周，减去7天
-            if (type === 'last') {
-                monday.setDate(monday.getDate() - 7);
-            }
-            
-            // 生成一周的日期
-            for (let i = 0; i < 7; i++) {
-                const date = new Date(monday);
-                date.setDate(monday.getDate() + i);
-                dates.push(date.toISOString().split('T')[0]);
-            }
-            
-            return dates;
         }
     </script>
 </body>
