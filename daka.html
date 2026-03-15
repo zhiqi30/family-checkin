@@ -53,6 +53,7 @@ body{background:#f6f7f9;padding:16px}
 const BASE = new Date("2026-03-16");
 const DB_ID = "family_sport_2026";
 
+// 获取当前周的7天日期（从3月16日每7天重置）
 function getWeekDates() {
     const now = new Date();
     const days = Math.floor((now - BASE) / 86400000);
@@ -67,12 +68,13 @@ function getWeekDates() {
     return arr;
 }
 
+// 新罚款规则：≤2天未打卡不扣钱，≥3天（含）开始双倍罚款（50元/天×2）
 function calcFine(uncheck) {
-    if (uncheck<=0) return 0;
-    if (uncheck<=2) return 50*uncheck;
-    return 100 + 100*(uncheck-2);
+    if (uncheck <= 2) return 0; // ≤2天不扣钱
+    return 100 * (uncheck - 2); // ≥3天，每少1天罚100元（双倍）
 }
 
+// 从云端加载全家打卡数据
 async function loadData() {
     try {
         const res = await fetch(`https://api.dbhub.io/v1/query?dbname=free-public-share/${DB_ID}.db&sql=select+*+from+checkin`);
@@ -88,6 +90,7 @@ async function loadData() {
     }
 }
 
+// 提交打卡数据到云端（全家同步）
 async function saveOne(name,day,steps,cal) {
     await fetch(`https://api.dbhub.io/v1/exec`,{
         method:"POST",
@@ -98,6 +101,7 @@ async function saveOne(name,day,steps,cal) {
     });
 }
 
+// 提交打卡逻辑
 async function submitCheckin() {
     const m=document.getElementById("member").value;
     const s=parseInt(document.getElementById("steps").value)||0;
@@ -105,12 +109,29 @@ async function submitCheckin() {
     if (s<=0||c<=0) {alert("请输入有效数据");return;}
     const today = new Date().toISOString().split("T")[0];
     await saveOne(m,today,s,c);
-    alert("✅ 打卡成功！全家已同步");
+    
+    // 俏皮提醒文案
+    const dates = getWeekDates();
+    const data = await loadData();
+    const userData = data[m] || {};
+    let checkinCount = 0;
+    dates.forEach(d => {if(userData[d]) checkinCount++;});
+    const uncheck = 7 - checkinCount;
+    
+    let remindText = "✅ 打卡成功！全家已同步～";
+    if (uncheck === 3) {
+        remindText = "😜 打卡成功！不过本周已经3天没打卡咯，罚款要开始翻倍啦～";
+    } else if (uncheck > 3) {
+        remindText = `🤭 打卡成功！本周已经${uncheck}天没打卡，罚款已翻倍${uncheck-2}天咯～`;
+    }
+    alert(remindText);
+
     document.getElementById("steps").value="";
     document.getElementById("cal").value="";
     renderStats();
 }
 
+// 渲染全家统计数据
 async function renderStats() {
     const dates=getWeekDates();
     const data=await loadData();
@@ -137,6 +158,7 @@ async function renderStats() {
     document.getElementById("statsContainer").innerHTML=html;
 }
 
+// 切换打卡/统计标签页
 function switchTab(t) {
     document.getElementById("home").style.display="none";
     document.getElementById("stats").style.display="none";
@@ -146,6 +168,7 @@ function switchTab(t) {
     if (t==='stats') renderStats();
 }
 
+// 页面加载时自动渲染统计数据
 window.onload=()=>{renderStats()};
 </script>
 </body>
