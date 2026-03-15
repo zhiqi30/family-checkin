@@ -1,692 +1,152 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家族运动打卡系统</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: '微软雅黑', sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
-        
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            color: #7f8c8d;
-            font-weight: 600;
-        }
-        
-        .tab.active {
-            border-bottom-color: #3498db;
-            color: #3498db;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #34495e;
-            font-weight: 600;
-        }
-        
-        select, input[type="number"], input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .upload-area {
-            border: 2px dashed #bdc3c7;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-        }
-        
-        .upload-area:hover {
-            border-color: #3498db;
-            background-color: #f8f9fa;
-        }
-        
-        .upload-area i {
-            font-size: 40px;
-            color: #7f8c8d;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        
-        button:hover {
-            background-color: #2980b9;
-        }
-        
-        .summary-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .summary-card h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .stat-item:last-child {
-            border-bottom: none;
-        }
-        
-        .stat-label {
-            color: #34495e;
-        }
-        
-        .stat-value {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .fine {
-            color: #e74c3c;
-        }
-        
-        .success {
-            color: #27ae60;
-        }
-        
-        #preview-image {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 15px 0;
-            display: none;
-        }
-        
-        .member-setting {
-            background-color: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .week-selector {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        
-        .week-btn {
-            padding: 8px 15px;
-            background-color: #eee;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            width: auto;
-        }
-        
-        .week-btn.active {
-            background-color: #3498db;
-            color: white;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家族运动打卡</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+body{background:#f6f7f9;padding:16px}
+.card{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.title{text-align:center;font-size:20px;font-weight:600;margin:16px 0;color:#222}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tab{flex:1;padding:10px;border-radius:12px;background:#f1f1f1;text-align:center;font-size:14px}
+.tab.active{background:#4e8dff;color:white}
+.input{width:100%;padding:12px;border:1px solid #e0e0e0;border-radius:12px;margin-top:8px;font-size:16px}
+.btn{width:100%;padding:14px;background:#4e8dff;color:white;border:none;border-radius:12px;margin-top:12px;font-size:16px;font-weight:500}
+.btn:active{opacity:.9}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f3f3f3;font-size:15px}
+.row:last-child{border-bottom:none}
+.label{color:#555}
+.value{font-weight:600;color:#222}
+.fine{color:#ff5252}
+.success{color:#4caf50}
+.select{width:100%;padding:12px;border:1px solid #e0e0e0;border-radius:12px;margin-top:8px;font-size:16px;background:white}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏃 家族运动打卡系统</h1>
-        
-        <div class="tab-container">
-            <div class="tab active" data-tab="checkin">每日打卡</div>
-            <div class="tab" data-tab="settings">目标设置</div>
-            <div class="tab" data-tab="overview">打卡概览</div>
-            <div class="tab" data-tab="weekly">周总结</div>
-        </div>
-        
-        <!-- 每日打卡 Tab -->
-        <div class="tab-content active" id="checkin">
-            <div class="form-group">
-                <label for="member">选择成员</label>
-                <select id="member">
-                    <option value="member1">凡</option>
-                    <option value="member2">婉玲</option>
-                    <option value="member3">芷琪</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>上传运动截图</label>
-                <div class="upload-area" id="upload-area">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <p>点击或拖拽图片到此处上传</p>
-                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
-                </div>
-                <img id="preview-image" alt="预览图片">
-            </div>
-            
-            <div class="form-group">
-                <label for="steps">步数</label>
-                <input type="number" id="steps" placeholder="请输入步数">
-            </div>
-            
-            <div class="form-group">
-                <label for="calories">消耗卡路里</label>
-                <input type="number" id="calories" placeholder="请输入卡路里">
-            </div>
-            
-            <button id="submit-checkin">提交打卡</button>
-        </div>
-        
-        <!-- 目标设置 Tab -->
-        <div class="tab-content" id="settings">
-            <div class="member-setting">
-                <h3>凡 目标设置</h3>
-                <div class="form-group">
-                    <label for="member1-steps">每日步数目标</label>
-                    <input type="number" id="member1-steps" placeholder="例如：4000" value="4000">
-                </div>
-                <div class="form-group">
-                    <label for="member1-calories">每日卡路里目标</label>
-                    <input type="number" id="member1-calories" placeholder="例如：350" value="350">
-                </div>
-            </div>
-            
-            <div class="member-setting">
-                <h3>婉玲 目标设置</h3>
-                <div class="form-group">
-                    <label for="member2-steps">每日步数目标</label>
-                    <input type="number" id="member2-steps" placeholder="例如：4000" value="4000">
-                </div>
-                <div class="form-group">
-                    <label for="member2-calories">每日卡路里目标</label>
-                    <input type="number" id="member2-calories" placeholder="例如：350" value="350">
-                </div>
-            </div>
-            
-            <div class="member-setting">
-                <h3>芷琪 目标设置</h3>
-                <div class="form-group">
-                    <label for="member3-steps">每日步数目标</label>
-                    <input type="number" id="member3-steps" placeholder="例如：4000" value="4000">
-                </div>
-                <div class="form-group">
-                    <label for="member3-calories">每日卡路里目标</label>
-                    <input type="number" id="member3-calories" placeholder="例如：350" value="300">
-                </div>
-            </div>
-            
-            <button id="save-settings">保存目标设置</button>
-        </div>
-        
-        <!-- 打卡概览 Tab -->
-        <div class="tab-content" id="overview">
-            <div class="week-selector">
-                <button class="week-btn active" data-week="current">本周</button>
-                <button class="week-btn" data-week="last">上周</button>
-            </div>
-            
-            <div class="summary-card">
-                <h3>凡 打卡情况</h3>
-                <div class="stat-item">
-                    <span class="stat-label">本周已打卡</span>
-                    <span class="stat-value success" id="member1-checkin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周未打卡</span>
-                    <span class="stat-value" id="member1-uncheckin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周罚款</span>
-                    <span class="stat-value fine" id="member1-fine">¥0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总步数</span>
-                    <span class="stat-value" id="member1-total-steps">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总卡路里</span>
-                    <span class="stat-value" id="member1-total-calories">0</span>
-                </div>
-            </div>
-            
-            <div class="summary-card">
-                <h3>婉玲 打卡情况</h3>
-                <div class="stat-item">
-                    <span class="stat-label">本周已打卡</span>
-                    <span class="stat-value success" id="member2-checkin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周未打卡</span>
-                    <span class="stat-value" id="member2-uncheckin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周罚款</span>
-                    <span class="stat-value fine" id="member2-fine">¥0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总步数</span>
-                    <span class="stat-value" id="member2-total-steps">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总卡路里</span>
-                    <span class="stat-value" id="member2-total-calories">0</span>
-                </div>
-            </div>
-            
-            <div class="summary-card">
-                <h3>芷琪 打卡情况</h3>
-                <div class="stat-item">
-                    <span class="stat-label">本周已打卡</span>
-                    <span class="stat-value success" id="member3-checkin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周未打卡</span>
-                    <span class="stat-value" id="member3-uncheckin-days">0 天</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">本周罚款</span>
-                    <span class="stat-value fine" id="member3-fine">¥0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总步数</span>
-                    <span class="stat-value" id="member3-total-steps">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总卡路里</span>
-                    <span class="stat-value" id="member3-total-calories">0</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 周总结 Tab -->
-        <div class="tab-content" id="weekly">
-            <div class="week-selector">
-                <button class="week-btn active" data-week="current">本周</button>
-                <button class="week-btn" data-week="last">上周</button>
-            </div>
-            
-            <div class="summary-card">
-                <h3>📊 本周运动总结</h3>
-                <div class="stat-item">
-                    <span class="stat-label">家族总步数</span>
-                    <span class="stat-value" id="total-family-steps">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">家族总卡路里</span>
-                    <span class="stat-value" id="total-family-calories">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总未打卡次数</span>
-                    <span class="stat-value" id="total-uncheckin">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">总罚款金额</span>
-                    <span class="stat-value fine" id="total-fine">¥0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">步数冠军</span>
-                    <span class="stat-value success" id="steps-champion">暂无</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">卡路里冠军</span>
-                    <span class="stat-value success" id="calories-champion">暂无</span>
-                </div>
-            </div>
-            
-            <button id="export-summary">导出周总结</button>
-        </div>
-    </div>
+<div class="title">🏃 家族运动打卡</div>
+<div class="tabs">
+<div class="tab active" onclick="switchTab('home')">打卡</div>
+<div class="tab" onclick="switchTab('stats')">统计</div>
+</div>
 
-    <script>
-        let currentWeek = 'current';
-        // 基准日期：2026年3月11日（第一周第一天）
-        const BASE_DATE = new Date('2026-03-11');
-        let checkinData = JSON.parse(localStorage.getItem('familyCheckinData')) || {
-            current: { member1: {}, member2: {}, member3: {} },
-            last: { member1: {}, member2: {}, member3: {} }
-        };
-        let targetSettings = JSON.parse(localStorage.getItem('targetSettings')) || {
-            member1: { steps: 4000, calories: 350 },
-            member2: { steps: 4000, calories: 350 },
-            member3: { steps: 4000, calories: 300 }
-        };
+<div id="home" style="display:block">
+<div class="card">
+<select class="select" id="member">
+<option value="凡">凡</option>
+<option value="婉玲">婉玲</option>
+<option value="芷琪">芷琪</option>
+</select>
+<input class="input" id="steps" placeholder="输入步数" type="number">
+<input class="input" id="cal" placeholder="输入卡路里" type="number">
+<button class="btn" onclick="submitCheckin()">提交打卡</button>
+</div>
+</div>
 
-        const nameMap = {
-            member1: "凡",
-            member2: "婉玲",
-            member3: "芷琪"
-        };
+<div id="stats" style="display:none">
+<div class="card" id="statsContainer"></div>
+</div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            initTabs();
-            initUploadArea();
-            bindEvents();
-            initSettingsForm();
-            updateOverview();
-            updateWeeklySummary();
-            showWarmRemind();
+<script>
+// 基准日期：2026年3月16日（打卡第一天）
+const BASE = new Date("2026-03-16");
+const DB_ID = "family_sport_2026";
+
+function getWeekDates() {
+    const now = new Date();
+    const days = Math.floor((now - BASE) / 86400000);
+    const weekStart = new Date(BASE);
+    weekStart.setDate(BASE.getDate() + Math.floor(days / 7) * 7);
+    const arr = [];
+    for (let i=0;i<7;i++) {
+        const d = new Date(weekStart);
+        d.setDate(weekStart.getDate()+i);
+        arr.push(d.toISOString().split("T")[0]);
+    }
+    return arr;
+}
+
+function calcFine(uncheck) {
+    if (uncheck<=0) return 0;
+    if (uncheck<=2) return 50*uncheck;
+    return 100 + 100*(uncheck-2);
+}
+
+async function loadData() {
+    try {
+        const res = await fetch(`https://api.dbhub.io/v1/query?dbname=free-public-share/${DB_ID}.db&sql=select+*+from+checkin`);
+        const j = await res.json();
+        const map = {};
+        j.forEach(row=>{
+            if (!map[row.name]) map[row.name]={};
+            map[row.name][row.day]={steps:row.steps,cal:row.cal};
         });
+        return map;
+    }catch(e){
+        return {};
+    }
+}
 
-        function initTabs() {
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', function () {
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    document.getElementById(this.dataset.tab).classList.add('active');
-                });
-            });
-        }
+async function saveOne(name,day,steps,cal) {
+    await fetch(`https://api.dbhub.io/v1/exec`,{
+        method:"POST",
+        body:JSON.stringify({
+            dbname:`free-public-share/${DB_ID}.db`,
+            sql:`insert or replace into checkin (name,day,steps,cal) values ('${name}','${day}',${steps},${cal})`
+        })
+    });
+}
 
-        function initUploadArea() {
-            const uploadArea = document.getElementById('upload-area');
-            const imageUpload = document.getElementById('image-upload');
-            const previewImage = document.getElementById('preview-image');
+async function submitCheckin() {
+    const m=document.getElementById("member").value;
+    const s=parseInt(document.getElementById("steps").value)||0;
+    const c=parseInt(document.getElementById("cal").value)||0;
+    if (s<=0||c<=0) {alert("请输入有效数据");return;}
+    const today = new Date().toISOString().split("T")[0];
+    await saveOne(m,today,s,c);
+    alert("✅ 打卡成功！全家已同步");
+    document.getElementById("steps").value="";
+    document.getElementById("cal").value="";
+    renderStats();
+}
 
-            uploadArea.addEventListener('click', () => imageUpload.click());
+async function renderStats() {
+    const dates=getWeekDates();
+    const data=await loadData();
+    const members=["凡","婉玲","芷琪"];
+    let html="";
+    members.forEach(name=>{
+        const user=data[name]||{};
+        let cnt=0;
+        let totalSteps=0,totalCal=0;
+        dates.forEach(d=>{
+            if (user[d]) {cnt++;totalSteps+=user[d].steps;totalCal+=user[d].cal;}
+        });
+        const uncheck=7-cnt;
+        const fine=calcFine(uncheck);
+        html+=`<div class="card">`;
+        html+=`<div style="font-weight:600;margin-bottom:8px">${name}</div>`;
+        html+=`<div class="row"><span class="label">本周已打卡</span><span class="value success">${cnt}天</span></div>`;
+        html+=`<div class="row"><span class="label">未打卡</span><span class="value">${uncheck}天</span></div>`;
+        html+=`<div class="row"><span class="label">本周罚款</span><span class="value fine">¥${fine}</span></div>`;
+        html+=`<div class="row"><span class="label">总步数</span><span class="value">${totalSteps}</span></div>`;
+        html+=`<div class="row"><span class="label">总卡路里</span><span class="value">${totalCal}</span></div>`;
+        html+=`</div>`;
+    });
+    document.getElementById("statsContainer").innerHTML=html;
+}
 
-            imageUpload.addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = e => {
-                        previewImage.src = e.target.result;
-                        previewImage.style.display = 'block';
-                        alert("📸 已加载截图，请手动输入步数和卡路里～");
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
+function switchTab(t) {
+    document.getElementById("home").style.display="none";
+    document.getElementById("stats").style.display="none";
+    document.querySelectorAll(".tab").forEach(tab=>tab.classList.remove("active"));
+    document.getElementById(t).style.display="block";
+    document.querySelector(`.tab:nth-child(${t==='home'?1:2})`).classList.add("active");
+    if (t==='stats') renderStats();
+}
 
-        function bindEvents() {
-            document.getElementById('submit-checkin').addEventListener('click', submitCheckin);
-            document.getElementById('save-settings').addEventListener('click', saveSettings);
-            document.getElementById('export-summary').addEventListener('click', exportSummary);
-
-            document.querySelectorAll('.week-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    currentWeek = this.dataset.week;
-                    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    updateOverview();
-                    updateWeeklySummary();
-                });
-            });
-        }
-
-        function initSettingsForm() {
-            document.getElementById('member1-steps').value = targetSettings.member1.steps;
-            document.getElementById('member1-calories').value = targetSettings.member1.calories;
-            document.getElementById('member2-steps').value = targetSettings.member2.steps;
-            document.getElementById('member2-calories').value = targetSettings.member2.calories;
-            document.getElementById('member3-steps').value = targetSettings.member3.steps;
-            document.getElementById('member3-calories').value = targetSettings.member3.calories;
-        }
-
-        function submitCheckin() {
-            const member = document.getElementById('member').value;
-            const steps = parseInt(document.getElementById('steps').value) || 0;
-            const calories = parseInt(document.getElementById('calories').value) || 0;
-
-            if (steps <= 0 || calories <= 0) {
-                alert("请输入有效的步数和卡路里！");
-                return;
-            }
-
-            const today = new Date().toISOString().split('T')[0];
-            if (!checkinData[currentWeek][member]) checkinData[currentWeek][member] = {};
-            checkinData[currentWeek][member][today] = { steps, calories };
-            localStorage.setItem('familyCheckinData', JSON.stringify(checkinData));
-
-            alert(`✅ ${nameMap[member]} 打卡成功！`);
-
-            document.getElementById('steps').value = '';
-            document.getElementById('calories').value = '';
-            document.getElementById('preview-image').style.display = 'none';
-            document.getElementById('image-upload').value = '';
-
-            updateOverview();
-            updateWeeklySummary();
-            showWarmRemind();
-        }
-
-        function saveSettings() {
-            targetSettings = {
-                member1: { steps: parseInt(document.getElementById('member1-steps').value) || 4000, calories: parseInt(document.getElementById('member1-calories').value) || 350 },
-                member2: { steps: parseInt(document.getElementById('member2-steps').value) || 4000, calories: parseInt(document.getElementById('member2-calories').value) || 350 },
-                member3: { steps: parseInt(document.getElementById('member3-steps').value) || 4000, calories: parseInt(document.getElementById('member3-calories').value) || 300 }
-            };
-            localStorage.setItem('targetSettings', JSON.stringify(targetSettings));
-            alert("✅ 目标保存成功！");
-        }
-
-        // 核心：从3月11日开始，每7天为一周，自动计算当前周的日期范围
-        function getWeekDates(type) {
-            const today = new Date();
-            // 计算距离3月11日的天数
-            const daysSinceBase = Math.floor((today - BASE_DATE) / (24 * 60 * 60 * 1000));
-            // 计算当前周是第几个周（从0开始）
-            const currentWeekIndex = Math.floor(daysSinceBase / 7);
-            // 目标周索引（current=当前周，last=上周）
-            const targetWeekIndex = type === 'current' ? currentWeekIndex : currentWeekIndex - 1;
-            // 计算目标周第一天（周一）的日期
-            const weekFirstDay = new Date(BASE_DATE);
-            weekFirstDay.setDate(BASE_DATE.getDate() + targetWeekIndex * 7);
-            
-            const dates = [];
-            for (let i = 0; i < 7; i++) {
-                const d = new Date(weekFirstDay);
-                d.setDate(weekFirstDay.getDate() + i);
-                dates.push(d.toISOString().split('T')[0]);
-            }
-            return dates;
-        }
-
-        // 新罚款规则：1天没打就罚50，≥3天（含）双倍
-        function calculateFine(uncheckDays) {
-            if (uncheckDays <= 0) return 0;
-            // 前2天：50/天；第3天及以后：100/天
-            if (uncheckDays <= 2) {
-                return 50 * uncheckDays;
-            } else {
-                return 50 * 2 + 100 * (uncheckDays - 2);
-            }
-        }
-
-        function updateOverview() {
-            const weekDates = getWeekDates(currentWeek);
-            ['member1', 'member2', 'member3'].forEach(m => {
-                const data = checkinData[currentWeek][m] || {};
-                let count = 0;
-                let steps = 0;
-                let cal = 0;
-                weekDates.forEach(date => {
-                    if (data[date]) {
-                        count++;
-                        steps += data[date].steps;
-                        cal += data[date].calories;
-                    }
-                });
-                const uncheck = 7 - count;
-                const fine = calculateFine(uncheck);
-
-                document.getElementById(`${m}-checkin-days`).textContent = count + " 天";
-                document.getElementById(`${m}-uncheckin-days`).textContent = uncheck + " 天";
-                document.getElementById(`${m}-fine`).textContent = "¥" + fine;
-                document.getElementById(`${m}-total-steps`).textContent = steps;
-                document.getElementById(`${m}-total-calories`).textContent = cal;
-            });
-        }
-
-        function updateWeeklySummary() {
-            let totalSteps = 0, totalCal = 0, totalUncheck = 0, totalFine = 0;
-            let mSteps = { member1: 0, member2: 0, member3: 0 };
-            const weekDates = getWeekDates(currentWeek);
-
-            ['member1', 'member2', 'member3'].forEach(m => {
-                const data = checkinData[currentWeek][m] || {};
-                let cnt = 0;
-                Object.values(data).forEach(d => {
-                    cnt++;
-                    mSteps[m] += d.steps;
-                });
-                const uncheck = 7 - cnt;
-                const fine = calculateFine(uncheck);
-
-                totalUncheck += uncheck;
-                totalFine += fine;
-                totalSteps += mSteps[m];
-                totalCal += Object.values(data).reduce((s, d) => s + d.calories, 0);
-            });
-
-            const stepKing = Object.keys(mSteps).reduce((a, b) => mSteps[a] > mSteps[b] ? a : b);
-            document.getElementById('total-family-steps').textContent = totalSteps;
-            document.getElementById('total-family-calories').textContent = totalCal;
-            document.getElementById('total-uncheckin').textContent = totalUncheck;
-            document.getElementById('total-fine').textContent = "¥" + totalFine;
-            document.getElementById('steps-champion').textContent = nameMap[stepKing];
-            document.getElementById('calories-champion').textContent = nameMap[stepKing];
-        }
-
-        // 幽默俏皮的温馨提醒
-        function showWarmRemind() {
-            const member = document.getElementById('member').value;
-            const weekDates = getWeekDates('current');
-            const data = checkinData.current[member] || {};
-            let count = 0;
-            weekDates.forEach(d => { if (data[d]) count++; });
-            const uncheck = 7 - count;
-
-            // 正向鼓励提醒
-            if (count > 0) {
-                const praiseTexts = [
-                    `😜 ${nameMap[member]}，本周已打卡 ${count} 次，超棒的！继续冲～`,
-                    `💪 加油鸭！本周打卡 ${count} 次，离全勤只差 ${7-count} 天啦～`,
-                    `🌟 棒棒哒！本周已打卡 ${count} 次，坚持就是胜利～`
-                ];
-                const randomPraise = praiseTexts[Math.floor(Math.random() * praiseTexts.length)];
-                alert(randomPraise);
-            }
-
-            // 未打卡提醒（幽默俏皮）
-            if (uncheck >= 1) {
-                let remindText = '';
-                if (uncheck === 1) {
-                    remindText = `😝 宝子，本周已经 1 天没打卡咯，再不运动钱包要瘦啦～`;
-                } else if (uncheck === 2) {
-                    remindText = `😯 小心！本周已经 2 天没打卡，再摆烂罚款要翻倍咯～`;
-                } else if (uncheck >= 3) {
-                    remindText = `🤭 完犊子！本周已经 ${uncheck} 天没打卡，罚款从第 3 天开始翻倍咯～`;
-                }
-                alert(remindText);
-            }
-        }
-
-        function exportSummary() {
-            const weekLabel = currentWeek === 'current' ? '本周' : '上周';
-            const summaryDate = new Date().toLocaleDateString();
-            let summaryText = `🏆 ${weekLabel}家族运动打卡总结 (${summaryDate})\n\n`;
-            
-            ['member1', 'member2', 'member3'].forEach(member => {
-                const name = nameMap[member];
-                const checkinDays = document.getElementById(`${member}-checkin-days`).textContent;
-                const uncheckinDays = document.getElementById(`${member}-uncheckin-days`).textContent;
-                const fine = document.getElementById(`${member}-fine`).textContent;
-                const totalSteps = document.getElementById(`${member}-total-steps`).textContent;
-                const totalCalories = document.getElementById(`${member}-total-calories`).textContent;
-                
-                summaryText += `${name}：
-- 打卡天数：${checkinDays}
-- 未打卡天数：${uncheckinDays}
-- 本周罚款：${fine}
-- 总步数：${totalSteps}步
-- 总卡路里：${totalCalories}千卡
-
-`;
-            });
-            
-            summaryText += `📊 家族总计：
-- 总步数：${document.getElementById('total-family-steps').textContent}步
-- 总卡路里：${document.getElementById('total-family-calories').textContent}千卡
-- 总未打卡次数：${document.getElementById('total-uncheckin').textContent}次
-- 总罚款金额：${document.getElementById('total-fine').textContent}
-- 步数冠军：${document.getElementById('steps-champion').textContent}
-- 卡路里冠军：${document.getElementById('calories-champion').textContent}
-`;
-            
-            const blob = new Blob([summaryText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${weekLabel}家族运动打卡总结.txt`;
-            a.click();
-            URL.revokeObjectURL(url);
-            alert('📤 周总结已成功导出！');
-        }
-    </script>
+window.onload=()=>{renderStats()};
+</script>
 </body>
 </html>
